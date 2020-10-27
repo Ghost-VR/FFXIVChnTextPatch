@@ -18,17 +18,14 @@ public class TextPatchPanel extends JFrame implements ActionListener {
 
     private static Point origin = new Point();
     private static String title = "提莫苑|FFXIV汉化";
-
+    public JButton replaceButton = new JButton("汉化");
+    public JButton rollbackButton = new JButton("还原");
     private JLabel title_lable = new JLabel(title);
     private Dimension dimension;
-
     private JButton configButton = new JButton("设置");
     private JButton closeButton = new JButton("x");
     private JPanel titlePanel = new JPanel();
     private JPanel bodyPanel = new JPanel();
-
-    public JButton replaceButton = new JButton("汉化");
-    public JButton rollbackButton = new JButton("还原");
 
     public TextPatchPanel() {
         super(title);
@@ -67,8 +64,8 @@ public class TextPatchPanel extends JFrame implements ActionListener {
         add(configButton, 0);
         //最小化以及关闭
         closeButton.setBounds(260, 0, 20, 30);
-        closeButton.setFont(new Font("Microsoft Yahei",Font.BOLD,12));
-        closeButton.setForeground(new Color(255,255,255));
+        closeButton.setFont(new Font("Microsoft Yahei", Font.BOLD, 12));
+        closeButton.setForeground(new Color(255, 255, 255));
         closeButton.setMargin(new Insets(0, 0, 0, 0));
         closeButton.setBorder(null);
         closeButton.setOpaque(false);
@@ -76,7 +73,7 @@ public class TextPatchPanel extends JFrame implements ActionListener {
         closeButton.setContentAreaFilled(false);
         closeButton.setFocusable(false);
         closeButton.addActionListener(this);
-        add(closeButton,0);
+        add(closeButton, 0);
         //拖拽功能
         addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
@@ -87,13 +84,13 @@ public class TextPatchPanel extends JFrame implements ActionListener {
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent e) {
                 Point p = getLocation();
-                setLocation(p.x + e.getX() - origin.x, p.y + e.getY()- origin.y);
+                setLocation(p.x + e.getX() - origin.x, p.y + e.getY() - origin.y);
             }
         });
         //主要面板
         replaceButton.setBounds(30, 40, 80, 60);
-        replaceButton.setFont(new Font("Microsoft Yahei",Font.PLAIN,25));
-        replaceButton.setForeground(new Color(110,110,110));
+        replaceButton.setFont(new Font("Microsoft Yahei", Font.PLAIN, 25));
+        replaceButton.setForeground(new Color(110, 110, 110));
         replaceButton.setMargin(new Insets(0, 0, 0, 0));
         replaceButton.setOpaque(false);
         replaceButton.setIconTextGap(0);
@@ -101,11 +98,11 @@ public class TextPatchPanel extends JFrame implements ActionListener {
         replaceButton.setFocusable(false);
         replaceButton.addActionListener(this);
         replaceButton.setEnabled(true);
-        add(replaceButton,0);
+        add(replaceButton, 0);
 
         rollbackButton.setBounds(180, 40, 80, 60);
-        rollbackButton.setFont(new Font("Microsoft Yahei",Font.PLAIN,25));
-        rollbackButton.setForeground(new Color(110,110,110));
+        rollbackButton.setFont(new Font("Microsoft Yahei", Font.PLAIN, 25));
+        rollbackButton.setForeground(new Color(110, 110, 110));
         rollbackButton.setMargin(new Insets(0, 0, 0, 0));
         rollbackButton.setOpaque(false);
         rollbackButton.setIconTextGap(0);
@@ -113,7 +110,7 @@ public class TextPatchPanel extends JFrame implements ActionListener {
         rollbackButton.setFocusable(false);
         rollbackButton.addActionListener(this);
         rollbackButton.setEnabled(true);
-        add(rollbackButton,0);
+        add(rollbackButton, 0);
 
         setVisible(false);
         setVisible(true);
@@ -124,49 +121,50 @@ public class TextPatchPanel extends JFrame implements ActionListener {
                 String resourceFolder = path + File.separator + "game" + File.separator + "sqpack" + File.separator + "ffxiv";
                 String pathToIndex = resourceFolder + File.separator + "0a0000.win32.index";
                 EXDFUtil exdfUtil = new EXDFUtil(pathToIndex);
-                if(exdfUtil.isTransDat()){
+                if (exdfUtil.isTransDat()) {
                     replaceButton.setEnabled(false);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
         }
 
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == replaceButton) {
+        if (e.getSource() == replaceButton) {
             String path = Config.getProperty("GamePath");
             String lang = Config.getProperty("Language");
             System.out.println("游戏路径：" + path);
             System.out.println("目标语言：" + lang);
-            if(isFFXIVFloder(path)){
+            if (isFFXIVFloder(path)) {
                 //备份原文件
                 String resourceFolder = path + File.separator + "game" + File.separator + "sqpack" + File.separator + "ffxiv";
                 String[] resourceNames = {"000000.win32.dat0", "000000.win32.index", "000000.win32.index2", "0a0000.win32.dat0", "0a0000.win32.index", "0a0000.win32.index2"};
-                for(String resourceName :resourceNames){
+                for (String resourceName : resourceNames) {
                     File resourceFile = new File(resourceFolder + File.separator + resourceName);
-                    if(resourceFile.exists() && resourceFile.isFile()){
+                    if (resourceFile.exists() && resourceFile.isFile()) {
                         FileUtil.copyTo(resourceFile, "backup" + File.separator + resourceFile.getName());
                     }
                 }
                 ReplaceThread replaceThread = new ReplaceThread(resourceFolder, this);
                 Thread replaceFileThread = new Thread(replaceThread);
                 replaceFileThread.start();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "<html><body>请选择正确的游戏根目录<br />目录预设名为：<br />FINAL FANTASY XIV ONLINE</body></html>", "路径错误", JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 new ConfigApplicationPanel();
             }
         }
-        if(e.getSource() == rollbackButton) {
+        if (e.getSource() == rollbackButton) {
             String path = Config.getProperty("GamePath");
-            if(isFFXIVFloder(path)){
+            if (isFFXIVFloder(path)) {
                 //还原备份文件
                 String resourceFolder = path + File.separator + "game" + File.separator + "sqpack" + File.separator + "ffxiv";
                 RollbackThread rollbackThread = new RollbackThread(resourceFolder, this, true);
                 Thread rollbackFileThread = new Thread(rollbackThread);
                 rollbackFileThread.start();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "<html><body>请选择正确的游戏根目录<br />目录预设名为：<br />FINAL FANTASY XIV ONLINE</body></html>", "路径错误", JOptionPane.ERROR_MESSAGE);
                 this.dispose();
                 new ConfigApplicationPanel();
@@ -181,10 +179,10 @@ public class TextPatchPanel extends JFrame implements ActionListener {
         }
     }
 
-    private boolean isFFXIVFloder(String path){
-        if(path == null)
+    private boolean isFFXIVFloder(String path) {
+        if (path == null)
             return false;
-        if(new File(path + File.separator + "game" + File.separator + "ffxiv.exe").exists())
+        if (new File(path + File.separator + "game" + File.separator + "ffxiv.exe").exists())
             return true;
         return false;
     }

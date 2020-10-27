@@ -32,6 +32,10 @@ public class EXHFFile {
         loadEXHF(data);
     }
 
+    public static void main(String[] args) throws Exception {
+        new EXHFFile("F:\\exd\\exd\\achievement.exh");
+    }
+
     private void loadEXHF(byte[] data) throws IOException {
         ByteBuffer buffer = ByteBuffer.wrap(data);
         buffer.order(ByteOrder.BIG_ENDIAN);
@@ -93,9 +97,5 @@ public class EXHFFile {
 
     public int[] getLangs() {
         return langs;
-    }
-
-    public static void main(String[] args) throws Exception{
-        new EXHFFile("F:\\exd\\exd\\achievement.exh");
     }
 }

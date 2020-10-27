@@ -19,17 +19,19 @@ public class JianFan {
     public static final String EMPTY = "";
     public static final String SHARP = "#";
     public static final String EQUAL = "=";
-
+    private static JianFan jianFan;
     private char[] chars = null;
-
     private Forest dict = null;
-
     private int maxLen = 2;
 
-    private static JianFan jianFan;
-    public static synchronized JianFan getInstance(){
+    JianFan() {
+        loadCharMapping();
+        loadLexemicMapping();
+    }
+
+    public static synchronized JianFan getInstance() {
         try {
-            if(jianFan == null){
+            if (jianFan == null) {
                 jianFan = new JianFan();
             }
         } catch (Exception e) {
@@ -38,9 +40,8 @@ public class JianFan {
         return jianFan;
     }
 
-    JianFan() {
-        loadCharMapping();
-        loadLexemicMapping();
+    public static void main(String[] args) {
+        System.out.println(JianFan.getInstance().j2f("简体中文"));
     }
 
     public void loadCharMapping() {
@@ -113,7 +114,6 @@ public class JianFan {
         }
     }
 
-
     public String j2f(String str) {
         if (StringUtil.isBlank(str)) {
             return str;
@@ -135,10 +135,6 @@ public class JianFan {
             strConvert(str.substring(beginOffe, str.length()), sb);
         }
         return sb.toString();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(JianFan.getInstance().j2f("简体中文"));
     }
 
 }

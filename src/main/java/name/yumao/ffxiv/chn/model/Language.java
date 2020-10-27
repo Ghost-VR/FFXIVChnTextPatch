@@ -11,13 +11,13 @@ public enum Language {
     private String name;
     private String lang;
 
-    Language(String name, String lang){
+    Language(String name, String lang) {
         this.name = name;
         this.lang = lang;
     }
 
-    public static String toLang(String name){
-        for (Language lang: Language.values()) {
+    public static String toLang(String name) {
+        for (Language lang : Language.values()) {
             if (lang.name.equals(name)) {
                 return lang.lang;
             }

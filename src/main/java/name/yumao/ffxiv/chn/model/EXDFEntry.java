@@ -5,7 +5,7 @@ import name.yumao.ffxiv.chn.util.ArrayUtil;
 import java.nio.ByteBuffer;
 
 public class EXDFEntry {
-    
+
     private byte[] chunk;
     private byte[] string;
     private byte[] data;
@@ -66,13 +66,13 @@ public class EXDFEntry {
         return buffer.getFloat();
     }
 
-    public byte[] getString( short offset) {
+    public byte[] getString(short offset) {
         int datasetChunkSize = this.chunk.length;
         ByteBuffer buffer = ByteBuffer.wrap(this.data);
         buffer.position(offset);
         int stringOffset = buffer.getInt();
 
-        if(datasetChunkSize + stringOffset >= buffer.limit()){
+        if (datasetChunkSize + stringOffset >= buffer.limit()) {
             return new byte[0];
         }
 

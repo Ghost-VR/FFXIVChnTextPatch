@@ -2,8 +2,11 @@ package name.yumao.ffxiv.chn.util;
 
 import name.yumao.ffxiv.chn.model.*;
 
-import java.io.*;
-import java.util.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class EXDFUtil {
 
@@ -86,7 +89,7 @@ public class EXDFUtil {
                         if (exdfDatasetSE.type == 0x0 && exdfDatasetSE.offset == 0x0) {
                             value = exdfEntryJA.getString(exdfDatasetSE.offset);
                         }
-                        if (key04 != null && key0c != null && key70 != null && key72!=null  && value != null && value.length > 0) {
+                        if (key04 != null && key0c != null && key70 != null && key72 != null && value != null && value.length > 0) {
                             String key = key04.toString() + key0c.toString() + key70.toString() + key72.toString();
                             competeJournalMap.put(key, value);
                             break;
@@ -159,9 +162,9 @@ public class EXDFUtil {
                         if (exdfDatasetSE.type == 0x0 && exdfDatasetSE.offset == 0x0) {
                             value = exdfEntryJA.getString(exdfDatasetSE.offset);
                         }
-                        if (key04 != null && key0c != null && key70 != null && key72!=null  && value != null && value.length > 0) {
+                        if (key04 != null && key0c != null && key70 != null && key72 != null && value != null && value.length > 0) {
                             String key = key04.toString() + key0c.toString() + key70.toString() + key72.toString();
-                            if(sourceMap.get(key) != null){
+                            if (sourceMap.get(key) != null) {
                                 exMap.put(("EXD/CompleteJournal_".toLowerCase() + String.valueOf(listEntryIndex) + "_1").toLowerCase(), sourceMap.get(key));
                             }
                             break;
@@ -328,7 +331,7 @@ public class EXDFUtil {
                     if (exdfDatasetSE.type == 0) {
                         byte[] jaBytes = exdfEntryJA.getString(exdfDatasetSE.offset);
                         String jaStr = new String(jaBytes, "UTF-8");
-                        if(jaStr.contains("teemo.link") || jaStr.contains("sdo.com")){
+                        if (jaStr.contains("teemo.link") || jaStr.contains("sdo.com")) {
                             return true;
                         }
                     }
@@ -338,18 +341,18 @@ public class EXDFUtil {
         return false;
     }
 
-    public HashMap<String,String> transMap(HashMap<String, String> transMap) throws Exception {
+    public HashMap<String, String> transMap(HashMap<String, String> transMap) throws Exception {
         return this.transMap(transMap, "JA");
     }
 
-    public HashMap<String,String> transMap(HashMap<String, String> transMap, String lang) throws Exception {
+    public HashMap<String, String> transMap(HashMap<String, String> transMap, String lang) throws Exception {
         if (pathToIndexSE == null) return transMap;
         HashMap<Integer, SqPackIndexFolder> indexSE = new SqPackIndex(pathToIndexSE).resloveIndex();
         HashMap<Integer, SqPackIndexFolder> indexCN = new SqPackIndex(pathToIndexCN).resloveIndex();
         // 根据传入的文件进行遍历
         int fileCount = 0;
-        String[] replaceFiles = {"EXD/Action" , "EXD/ENpcResident", "EXD/BNpcName", "EXD/PlaceName"};
-        for(String replaceFile : replaceFiles) {
+        String[] replaceFiles = {"EXD/Action", "EXD/ENpcResident", "EXD/BNpcName", "EXD/PlaceName"};
+        for (String replaceFile : replaceFiles) {
             // 准备好文件目录名和文件名
             String filePatch = replaceFile.substring(0, replaceFile.lastIndexOf("/"));
             String fileName = replaceFile.substring(replaceFile.lastIndexOf("/") + 1) + ".EXH";

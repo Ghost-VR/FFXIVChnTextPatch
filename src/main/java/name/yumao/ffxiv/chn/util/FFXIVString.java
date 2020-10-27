@@ -12,92 +12,93 @@ import java.util.Arrays;
 import java.util.Vector;
 
 public class FFXIVString {
-    final static int START_BYTE 		   = 0x02;
-    final static int END_BYTE 			   = 0x03;
+    final static int START_BYTE = 0x02;
+    final static int END_BYTE = 0x03;
 
-    final static int TYPE_NONE             = 0x00;
-    final static int TYPE_TIME             = 0x07;
-    final static int TYPE_IF               = 0x08;
-    final static int TYPE_SWITCH           = 0x09;
-    final static int TYPE_NEWLINE          = 0x10;
-    final static int TYPE_ICON             = 0x12;
-    final static int TYPE_COLOR            = 0x13;
+    final static int TYPE_NONE = 0x00;
+    final static int TYPE_TIME = 0x07;
+    final static int TYPE_IF = 0x08;
+    final static int TYPE_SWITCH = 0x09;
+    final static int TYPE_NEWLINE = 0x10;
+    final static int TYPE_ICON = 0x12;
+    final static int TYPE_COLOR = 0x13;
 
-    final static int TYPE_ITALICS          = 0x1a;
-    final static int TYPE_INDENT           = 0x1d;
-    final static int TYPE_ICON2            = 0x1e;
-    final static int TYPE_DASH             = 0x1f;
+    final static int TYPE_ITALICS = 0x1a;
+    final static int TYPE_INDENT = 0x1d;
+    final static int TYPE_ICON2 = 0x1e;
+    final static int TYPE_DASH = 0x1f;
 
-    final static int TYPE_SERVER_VALUE0    = 0x20;
-    final static int TYPE_SERVER_VALUE1    = 0x21;
-    final static int TYPE_SERVER_VALUE2    = 0x22;
-    final static int TYPE_SERVER_VALUE3    = 0x23;
-    final static int TYPE_SERVER_VALUE4    = 0x24;
-    final static int TYPE_SERVER_VALUE5    = 0x25;
-    final static int TYPE_SERVER_VALUE6    = 0x26;
+    final static int TYPE_SERVER_VALUE0 = 0x20;
+    final static int TYPE_SERVER_VALUE1 = 0x21;
+    final static int TYPE_SERVER_VALUE2 = 0x22;
+    final static int TYPE_SERVER_VALUE3 = 0x23;
+    final static int TYPE_SERVER_VALUE4 = 0x24;
+    final static int TYPE_SERVER_VALUE5 = 0x25;
+    final static int TYPE_SERVER_VALUE6 = 0x26;
 
-    final static int TYPE_PLAYERLINK       = 0x27;
+    final static int TYPE_PLAYERLINK = 0x27;
 
-    final static int TYPE_REFERENCE        = 0x28;
-    final static int TYPE_INFO             = 0x29;
+    final static int TYPE_REFERENCE = 0x28;
+    final static int TYPE_INFO = 0x29;
 
-    final static int TYPE_LINK             = 0x2b;
-    final static int TYPE_SPLIT            = 0x2c;
+    final static int TYPE_LINK = 0x2b;
+    final static int TYPE_SPLIT = 0x2c;
 
-    final static int TYPE_REFERENCE_JA     = 0x30;
-    final static int TYPE_REFERENCE_EN     = 0x31;
-    final static int TYPE_REFERENCE_DE     = 0x32;
-    final static int TYPE_REFERENCE_FR     = 0x33;
-    final static int TYPE_REFERENCE2       = 0x40;
+    final static int TYPE_REFERENCE_JA = 0x30;
+    final static int TYPE_REFERENCE_EN = 0x31;
+    final static int TYPE_REFERENCE_DE = 0x32;
+    final static int TYPE_REFERENCE_FR = 0x33;
+    final static int TYPE_REFERENCE2 = 0x40;
 
-    final static int TYPE_ITEM_LOOKUP      = 0x31;
+    final static int TYPE_ITEM_LOOKUP = 0x31;
 
-    final static int TYPE_STYLE            = 0x48;
-    final static int TYPE_STYLE2           = 0x49;
+    final static int TYPE_STYLE = 0x48;
+    final static int TYPE_STYLE2 = 0x49;
 
     final static int INFO_NAME = 235;
     final static int INFO_GENDER = 233;
 
-    final static int SIZE_DATATYPE_BYTE    = 0xF0;
+    final static int SIZE_DATATYPE_BYTE = 0xF0;
     final static int SIZE_DATATYPE_BYTE256 = 0xF1;
-    final static int SIZE_DATATYPE_INT16   = 0xF2;
-    final static int SIZE_DATATYPE_INT24   = 0xFA;
-    final static int SIZE_DATATYPE_INT32   = 0xFE;
+    final static int SIZE_DATATYPE_INT16 = 0xF2;
+    final static int SIZE_DATATYPE_INT24 = 0xFA;
+    final static int SIZE_DATATYPE_INT32 = 0xFE;
 
-    final static int DECODE_BYTE	   	   = 0xF0;
-    final static int DECODE_INT16_MINUS1   = 0xF1;
-    final static int DECODE_INT16_1   	   = 0xF2;
-    final static int DECODE_INT16_2   	   = 0xF4;
-    final static int DECODE_INT24_MINUS1   = 0xF5;
-    final static int DECODE_INT24          = 0xF6;
-    final static int DECODE_INT24_1   	   = 0xFA;
-    final static int DECODE_INT24_2   	   = 0xFD;
-    final static int DECODE_INT32   	   = 0xFE;
-    final static int DECODE_VARIABLE   	   = 0xFF;
+    final static int DECODE_BYTE = 0xF0;
+    final static int DECODE_INT16_MINUS1 = 0xF1;
+    final static int DECODE_INT16_1 = 0xF2;
+    final static int DECODE_INT16_2 = 0xF4;
+    final static int DECODE_INT24_MINUS1 = 0xF5;
+    final static int DECODE_INT24 = 0xF6;
+    final static int DECODE_INT24_1 = 0xFA;
+    final static int DECODE_INT24_2 = 0xFD;
+    final static int DECODE_INT32 = 0xFE;
+    final static int DECODE_VARIABLE = 0xFF;
 
-    final static int COMPARISON_GE   	   = 0xE0;
-    final static int COMPARISON_UN   	   = 0xE1;
-    final static int COMPARISON_LE   	   = 0xE2;
-    final static int COMPARISON_NEQ   	   = 0xE3;
-    final static int COMPARISON_EQ   	   = 0xE4;
+    final static int COMPARISON_GE = 0xE0;
+    final static int COMPARISON_UN = 0xE1;
+    final static int COMPARISON_LE = 0xE2;
+    final static int COMPARISON_NEQ = 0xE3;
+    final static int COMPARISON_EQ = 0xE4;
 
-    final static int INFO_INTEGER		   = 0xE8;
-    final static int INFO_PLAYER		   = 0xE9;
-    final static int INFO_STRING		   = 0xEA;
-    final static int INFO_OBJECT		   = 0xEB;
+    final static int INFO_INTEGER = 0xE8;
+    final static int INFO_PLAYER = 0xE9;
+    final static int INFO_STRING = 0xEA;
+    final static int INFO_OBJECT = 0xEB;
 
     //Hard Coded Payloads that are known
     final static byte forenamePayload[] = {-1, 7, 2, 41, 3, -21, 2, 3, -1, 2, 32, 2, 3};
     final static byte surnamePayload[] = {-1, 7, 2, 41, 3, -21, 2, 3, -1, 2, 32, 3, 3};
 
-    public static String bytes2fstr(byte[] bytes){
+    public static String bytes2fstr(byte[] bytes) {
         return parseFFXIVString(bytes);
     }
-    public static String parseFFXIVString(byte[] bytes){
-        try{
+
+    public static String parseFFXIVString(byte[] bytes) {
+        try {
             LERandomBytes inBytes = new LERandomBytes(bytes, true, false);
             LERandomBytes outBytes = new LERandomBytes();
-            while (inBytes.hasRemaining()){
+            while (inBytes.hasRemaining()) {
                 byte b = inBytes.readByte();
                 if (b == START_BYTE) {
                     parsePayload(inBytes, outBytes);
@@ -106,7 +107,7 @@ public class FFXIVString {
                 }
             }
             return new String(outBytes.getWork(), "UTF-8");
-        }catch (Exception e){
+        } catch (Exception e) {
             return "<unk:" + HexUtils.bytesToHexStringWithOutSpace(bytes) + ">";
         }
     }
@@ -121,12 +122,12 @@ public class FFXIVString {
         inBytes.skip();
 
         long fullLength = inBytes.position() - possition + 1;
-        byte[] full = new byte[(int)fullLength];
+        byte[] full = new byte[(int) fullLength];
         inBytes.seek(possition - 1);
         inBytes.readFully(full);
 
         String outString = null;
-        switch (type){
+        switch (type) {
 //            case TYPE_NONE:
 //                // 无格式
 //                outString = "<none:" + HexUtils.bytesToHexStringWithOutSpace(body) + ">";
@@ -263,7 +264,7 @@ public class FFXIVString {
     private static int getBodySize(int payloadSize, LERandomBytes inBytes) {
         if (payloadSize < 0xF0)
             return payloadSize;
-        switch (payloadSize){
+        switch (payloadSize) {
             case SIZE_DATATYPE_BYTE:
                 return inBytes.readInt8();
             case SIZE_DATATYPE_BYTE256:
@@ -277,17 +278,17 @@ public class FFXIVString {
         return payloadSize;
     }
 
-    public static byte[] fstr2bytes(String fstr){
+    public static byte[] fstr2bytes(String fstr) {
         try {
-            if (fstr.contains("<hex:") || fstr.contains("<unk:")){
+            if (fstr.contains("<hex:") || fstr.contains("<unk:")) {
                 LERandomBytes inBytes = new LERandomBytes(fstr.getBytes("UTF-8"), true, false);
                 LERandomBytes outBytes = new LERandomBytes();
                 Vector<byte[]> outBytesVector = new Vector<byte[]>();
 
                 byte[] newFFXIVStringBytes = new byte[0];
-                while (inBytes.hasRemaining()){
+                while (inBytes.hasRemaining()) {
                     byte b = inBytes.readByte();
-                    if (b == (byte)0x3C) {
+                    if (b == (byte) 0x3C) {
                         outBytesVector.add(outBytes.getWork());
                         outBytes.clear();
                         parsePayload2(inBytes, outBytes);
@@ -299,7 +300,7 @@ public class FFXIVString {
                 }
                 outBytesVector.add(outBytes.getWork());
                 outBytes.clear();
-                for(byte[] bytes: outBytesVector){
+                for (byte[] bytes : outBytesVector) {
                     if (bytes.length > 0) {
                         newFFXIVStringBytes = ArrayUtil.append(newFFXIVStringBytes, bytes);
                     }
@@ -312,12 +313,13 @@ public class FFXIVString {
             return fstr.getBytes();
         }
     }
-    private static void parsePayload2(LERandomBytes inBytes, LERandomBytes outBytes) throws Exception{
+
+    private static void parsePayload2(LERandomBytes inBytes, LERandomBytes outBytes) throws Exception {
         int start = inBytes.position() - 1;
         int end = 0;
-        while (inBytes.hasRemaining()){
+        while (inBytes.hasRemaining()) {
             byte b = inBytes.readByte();
-            if (b == (byte)0x3E) {
+            if (b == (byte) 0x3E) {
                 end = inBytes.position();
             }
         }
@@ -325,21 +327,21 @@ public class FFXIVString {
         byte[] hexStrBytes = new byte[end - start];
         inBytes.readFully(hexStrBytes);
         String hexStr = new String(hexStrBytes, "UTF-8");
-        String hexBytesStr = hexStr.substring(hexStr.indexOf(":") + 1 , hexStr.length() - 1);
+        String hexBytesStr = hexStr.substring(hexStr.indexOf(":") + 1, hexStr.length() - 1);
         outBytes.write(HexUtils.hexStringToBytes(hexBytesStr));
     }
+
     public static String parseFFXIVString2(byte[] stringBytes) {
 
-        try{
-            byte[] newStringBytes = new byte[stringBytes.length*4];
+        try {
+            byte[] newStringBytes = new byte[stringBytes.length * 4];
 
             ByteBuffer buffIn = ByteBuffer.wrap(stringBytes);
             buffIn.order(ByteOrder.LITTLE_ENDIAN);
             ByteBuffer buffOut = ByteBuffer.wrap(newStringBytes);
             buffIn.order(ByteOrder.LITTLE_ENDIAN);
 
-            while (buffIn.hasRemaining())
-            {
+            while (buffIn.hasRemaining()) {
                 byte b = buffIn.get();
 
                 if (b == START_BYTE)
@@ -358,14 +360,14 @@ public class FFXIVString {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+        } catch (Exception e) {
+            try {
+                return "<ERROR Parsing: " + new String(stringBytes, "UTF-8") + ">";
+            } catch (UnsupportedEncodingException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }
-        catch (Exception e)
-        {try {
-            return "<ERROR Parsing: "+ new String(stringBytes, "UTF-8")+">";
-        } catch (UnsupportedEncodingException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }}
         return "ERROR";
     }
 
@@ -373,8 +375,7 @@ public class FFXIVString {
         int type = buffIn.get() & 0xFF;
         int payloadSize = buffIn.get() & 0xFF;
 
-        if (payloadSize == 0)
-        {
+        if (payloadSize == 0) {
 //            switch (type)
 //            {
 //                case TYPE_NEWLINE:
@@ -392,8 +393,7 @@ public class FFXIVString {
         // drop 0x03
 //        buffIn.get();
 
-        switch (type)
-        {
+        switch (type) {
             case (byte) 223:
                 for (int i = 0; i < payload.length; i++)
                     System.out.print(String.format("0x%x ", payload[i]));
@@ -401,20 +401,17 @@ public class FFXIVString {
 
                 break;
             case TYPE_INFO:
-                if ((((int)payload[0])&0xFF) == 0xEB && (((int)payload[1])&0xFF) == 0x02)
+                if ((((int) payload[0]) & 0xFF) == 0xEB && (((int) payload[1]) & 0xFF) == 0x02)
                     buffOut.put("<forename surname>".getBytes("UTF-8"));
                 else
                     buffOut.put("<value>".getBytes("UTF-8"));
                 break;
             case TYPE_SPLIT:
 
-                if (Arrays.equals(payload, forenamePayload))
-                {
+                if (Arrays.equals(payload, forenamePayload)) {
                     buffOut.put("<forename>".getBytes("UTF-8"));
                     break;
-                }
-                else if (Arrays.equals(payload, surnamePayload))
-                {
+                } else if (Arrays.equals(payload, surnamePayload)) {
                     buffOut.put("<surname>".getBytes("UTF-8"));
                     break;
                 }
@@ -426,7 +423,7 @@ public class FFXIVString {
                 buffOut.put(String.format("[%d]", payload[1 + contentsSize + 1]).getBytes("UTF-8"));
 
                 byte splitBuffer[] = new byte[contentsSize];
-                System.arraycopy(payload, 2, splitBuffer, 0, splitBuffer.length-2);
+                System.arraycopy(payload, 2, splitBuffer, 0, splitBuffer.length - 2);
                 ByteBuffer splitBB = ByteBuffer.wrap(splitBuffer);
                 splitBB.position(1);
                 byte[] outSplitProcessBuffer = new byte[512];
@@ -437,29 +434,25 @@ public class FFXIVString {
                 buffOut.put(">".getBytes("UTF-8"));
                 break;
             case (byte) 222:
-                byte opt1[] = new byte[payload[4]-1];
-                byte opt2[] = new byte[payload[4+payload[4]]-1];
+                byte opt1[] = new byte[payload[4] - 1];
+                byte opt2[] = new byte[payload[4 + payload[4]] - 1];
 
                 System.arraycopy(payload, 4, opt1, 0, opt1.length);
-                System.arraycopy(payload, 5+payload[3], opt2, 0, opt2.length);
+                System.arraycopy(payload, 5 + payload[3], opt2, 0, opt2.length);
 
                 buffOut.put("<".getBytes("UTF-8"));
-                if (opt1[0] == 0x02)
-                {
+                if (opt1[0] == 0x02) {
                     ByteBuffer optionPayload = ByteBuffer.wrap(opt1);
                     optionPayload.get(); //Skip start flag
                     processPacket(optionPayload, buffOut);
-                }
-                else
+                } else
                     buffOut.put(opt1);
                 buffOut.put("/".getBytes("UTF-8"));
-                if (opt2[0] == 0x02)
-                {
+                if (opt2[0] == 0x02) {
                     ByteBuffer optionPayload = ByteBuffer.wrap(opt1);
                     optionPayload.get(); //Skip start flag
                     processPacket(optionPayload, buffOut);
-                }
-                else
+                } else
                     buffOut.put(opt2);
                 buffOut.put(">".getBytes("UTF-8"));
                 break;
@@ -492,12 +485,12 @@ public class FFXIVString {
 
                 break;
             case TYPE_REFERENCE:
-                byte exdName[] = new byte[payload[1]-1];
+                byte exdName[] = new byte[payload[1] - 1];
                 System.arraycopy(payload, 2, exdName, 0, exdName.length);
                 buffOut.put(String.format("<ref:%s>", new String(exdName)).getBytes("UTF-8"));
                 break;
             case TYPE_REFERENCE2:
-                exdName = new byte[payload[6]-1];
+                exdName = new byte[payload[6] - 1];
                 System.arraycopy(payload, 7, exdName, 0, exdName.length);
                 buffOut.put(String.format("<ref:%s>", new String(exdName)).getBytes("UTF-8"));
                 break;
@@ -525,41 +518,36 @@ public class FFXIVString {
                 int pos2 = 1;
                 String switchString2 = "<switch:";
 
-                if (payload[0] == -35 || payload[0] == -24){
+                if (payload[0] == -35 || payload[0] == -24) {
                     if (payload[0] == -24)
                         pos2++;
-                    while (true)
-                    {
+                    while (true) {
                         pos2++;
                         int stringSize = payload[pos2];
                         pos2++;
-                        if (stringSize-1 != 0){
-                            byte switchBuffer[] = new byte[stringSize-1];
-                            System.arraycopy(payload, pos2, switchBuffer, 0, stringSize-1);
-                            if (switchBuffer[0] == 0x02)
-                            {
+                        if (stringSize - 1 != 0) {
+                            byte switchBuffer[] = new byte[stringSize - 1];
+                            System.arraycopy(payload, pos2, switchBuffer, 0, stringSize - 1);
+                            if (switchBuffer[0] == 0x02) {
                                 ByteBuffer switchBB = ByteBuffer.wrap(switchBuffer);
                                 switchBB.position(1);
                                 byte[] outProcessBuffer = new byte[512];
                                 ByteBuffer outProcessBB = ByteBuffer.wrap(outProcessBuffer);
                                 processPacket(switchBB, outProcessBB);
                                 switchString2 += new String(outProcessBuffer, 0, outProcessBB.position(), "UTF-8");
-                            }
-                            else
+                            } else
                                 switchString2 += new String(switchBuffer, "UTF-8");
                         }
-                        pos2+=stringSize-1;
+                        pos2 += stringSize - 1;
                         if (payload[pos2] == 0x03)
                             break;
                         switchString2 += "/";
                     }
-                }
-                else if (payload[0] == -37)
-                {
+                } else if (payload[0] == -37) {
                     switchString2 += "?";
                 }
 
-                buffOut.put((switchString2+">").getBytes("UTF-8"));
+                buffOut.put((switchString2 + ">").getBytes("UTF-8"));
                 break;
             case TYPE_NEWLINE:
                 buffOut.put("<br>".getBytes("UTF-8"));
@@ -595,8 +583,7 @@ public class FFXIVString {
 
         String compareStr;
         int code = buffIn.get() & 0xFF;
-        switch (code)
-        {
+        switch (code) {
             case COMPARISON_EQ:
                 compareStr = "==";
                 break;
@@ -620,23 +607,18 @@ public class FFXIVString {
 
     }
 
-    private static void decode(ByteBuffer buffIn, StringBuilder builder)
-    {
+    private static void decode(ByteBuffer buffIn, StringBuilder builder) {
         int code = buffIn.get() & 0xFF;
 
-        if (code < 0xD0)
-        {
+        if (code < 0xD0) {
             builder.append(" " + code + " ");
             return;
-        }
-        else if (code < 0xE0)
-        {
+        } else if (code < 0xE0) {
             builder.append(" " + code + " ");
             return;
         }
 
-        switch (code)
-        {
+        switch (code) {
             case INFO_INTEGER:
                 builder.append("INT:");
                 decode(buffIn, builder);
@@ -655,7 +637,7 @@ public class FFXIVString {
                 return;
             case DECODE_VARIABLE:
                 int size = buffIn.get() & 0xFF;
-                size = getPayloadSize(size, buffIn)-1;
+                size = getPayloadSize(size, buffIn) - 1;
                 byte data[] = new byte[size];
                 buffIn.get(data);
                 builder.append(parseFFXIVString(data));
@@ -663,20 +645,17 @@ public class FFXIVString {
         }
     }
 
-    private static void getParam(ByteBuffer buffIn, StringBuilder builder)
-    {
+    private static void getParam(ByteBuffer buffIn, StringBuilder builder) {
 
     }
 
     private static int getPayloadSize(int payloadSize, ByteBuffer buffIn) {
 
-        if (payloadSize < (int)0xF0)
+        if (payloadSize < (int) 0xF0)
             return payloadSize;
 
-        switch (payloadSize)
-        {
-            case SIZE_DATATYPE_BYTE:
-            {
+        switch (payloadSize) {
+            case SIZE_DATATYPE_BYTE: {
                 int valByte = buffIn.get() & 0xFF;
                 return valByte;
             }

@@ -16,7 +16,7 @@ public class FileUtil {
                 File dstFile = new File(folder.getAbsolutePath() + File.separator + srcFile.getName());
                 copyTo(srcFile, dstFile);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -26,7 +26,7 @@ public class FileUtil {
             if (srcFile.exists()) {
                 Files.copy(srcFile.toPath(), new File(dstPath).toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -36,7 +36,7 @@ public class FileUtil {
             if (srcFile.exists()) {
                 Files.copy(srcFile.toPath(), dstFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

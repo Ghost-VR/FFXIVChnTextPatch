@@ -11,13 +11,14 @@ public class FFXIVPatchMain {
         Config.setConfigResource("conf" + File.separator + "global.properties");
         String path = Config.getProperty("GamePath");
 
-        if(isFFXIVFloder(path)){
+        if (isFFXIVFloder(path)) {
             new TextPatchPanel();
-        }else{
+        } else {
             new ConfigApplicationPanel();
         }
     }
-    private static boolean isFFXIVFloder(String path){
+
+    private static boolean isFFXIVFloder(String path) {
         if (path == null) return false;
         return new File(path + File.separator + "game" + File.separator + "ffxiv.exe").exists();
     }

@@ -10,63 +10,63 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 
 public class EXDFFile {
-	private byte[] data;
-	private HashMap<Integer,byte[]> entrys = new HashMap<Integer, byte[]>();
-	
-	public EXDFFile(byte[] data) throws IOException {
-		loadEXDF(data);
-	}
+    private byte[] data;
+    private HashMap<Integer, byte[]> entrys = new HashMap<Integer, byte[]>();
 
-	public EXDFFile(String path) throws IOException, FileNotFoundException {
-		File file = new File(path);
-		FileInputStream fis = new FileInputStream(file);
-		byte[] data = new byte[(int) file.length()];
-		fis.read(data);
-		fis.close();
-		loadEXDF(data);
-	}
+    public EXDFFile(byte[] data) throws IOException {
+        loadEXDF(data);
+    }
 
-	private void loadEXDF(byte[] data) throws IOException {
-		this.data = data;
-		ByteBuffer buffer = ByteBuffer.wrap(data);
-		try {
-			int magic = buffer.getInt();
-			int version = buffer.getShort();
+    public EXDFFile(String path) throws IOException, FileNotFoundException {
+        File file = new File(path);
+        FileInputStream fis = new FileInputStream(file);
+        byte[] data = new byte[(int) file.length()];
+        fis.read(data);
+        fis.close();
+        loadEXDF(data);
+    }
 
-			if ((magic != 1163412550) || (version != 2)) {
-				throw new IOException("Not a EXDF");
-			}
-			buffer.getShort();
+    private void loadEXDF(byte[] data) throws IOException {
+        this.data = data;
+        ByteBuffer buffer = ByteBuffer.wrap(data);
+        try {
+            int magic = buffer.getInt();
+            int version = buffer.getShort();
 
-			int offsetTableSize = buffer.getInt();
+            if ((magic != 1163412550) || (version != 2)) {
+                throw new IOException("Not a EXDF");
+            }
+            buffer.getShort();
 
-			buffer.position(32);
+            int offsetTableSize = buffer.getInt();
 
-			
-			for (int i = 0; i < offsetTableSize / 8; i++){
-				
-				EXDHashEntry hashEntry = loadHashEntry(this.data, buffer.getInt(), buffer.getInt());
-				entrys.put(hashEntry.getIndex(), hashEntry.getData());
+            buffer.position(32);
 
-			}
 
-		} catch (BufferUnderflowException localBufferUnderflowException) {
-		} catch (BufferOverflowException localBufferOverflowException) {
-		}
-	}
+            for (int i = 0; i < offsetTableSize / 8; i++) {
 
-	private EXDHashEntry loadHashEntry(byte[] data, int index, int offset) {
-		ByteBuffer buffer = ByteBuffer.wrap(data);
-		buffer.position(offset);
-		int size = buffer.getInt();
-		byte[] entry = new byte[size];
-		buffer.getShort();
-		buffer.get(entry);
-		return new EXDHashEntry(index, entry);
-	}
+                EXDHashEntry hashEntry = loadHashEntry(this.data, buffer.getInt(), buffer.getInt());
+                entrys.put(hashEntry.getIndex(), hashEntry.getData());
 
-	public HashMap<Integer,byte[]> getEntrys() {
-		return this.entrys;
-	}
+            }
+
+        } catch (BufferUnderflowException localBufferUnderflowException) {
+        } catch (BufferOverflowException localBufferOverflowException) {
+        }
+    }
+
+    private EXDHashEntry loadHashEntry(byte[] data, int index, int offset) {
+        ByteBuffer buffer = ByteBuffer.wrap(data);
+        buffer.position(offset);
+        int size = buffer.getInt();
+        byte[] entry = new byte[size];
+        buffer.getShort();
+        buffer.get(entry);
+        return new EXDHashEntry(index, entry);
+    }
+
+    public HashMap<Integer, byte[]> getEntrys() {
+        return this.entrys;
+    }
 
 }
